@@ -1,14 +1,24 @@
 # Sweet equity valuation models
 
-Read the full guide first: [`docs/sweet-equity-valuation-guide.md`](../docs/sweet-equity-valuation-guide.md)
-— it explains the deal structure, how each input is sourced from the
-transaction documents, what every parameter does, and how to review a model
-built this way.
+**New to the topic? Start with the beginner set** — the Word guide
+[`docs/Sweet_Equity_Valuation_Guide.docx`](../docs/Sweet_Equity_Valuation_Guide.docx)
+and the live Excel model
+[`Sweet_Equity_Valuation_Model.xlsx`](Sweet_Equity_Valuation_Model.xlsx)
+(no macros; open sheet "1. Start here"). They share one worked example: a
+5-class structure (€180m shareholder loans @10% PIK → €30m prefs @8% → €10m
+management rollover notes @10% → A ordinaries 85% → B sweet equity 15%, MoM
+ratchet to 20%), pot V0 = €240m.
+
+The markdown guide
+[`docs/sweet-equity-valuation-guide.md`](../docs/sweet-equity-valuation-guide.md)
+is the more technical practitioner edition, and the Python scripts below use
+its simpler 2-instrument example — same methods, different worked numbers.
 
 ## Files
 
 | File | Method | Handles | Requires |
 |---|---|---|---|
+| `Sweet_Equity_Valuation_Model.xlsx` | OPM + 10,000-path Monte Carlo in native Excel formulas | The full 5-class waterfall, ratchet, exit-timing distribution, sensitivity grid, payoff chart | Excel only |
 | `black_scholes_opm.py` | Closed-form Option Pricing Method | Plain waterfalls, fixed exit date; includes backsolve calibration and sensitivities | Standard library only |
 | `monte_carlo_sweet_equity.py` | Risk-neutral Monte Carlo | MoM ratchets, exit-timing distributions, leaver haircuts; validates itself against the OPM | `numpy` |
 
